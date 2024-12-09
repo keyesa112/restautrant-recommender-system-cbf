@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommended Restaurants</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+    <div class="flex justify-center items-center min-h-screen bg-gray-100">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl">
+            <h1 class="text-3xl font-bold text-center mb-6 text-gray-800">This is Recommended Restaurants For You</h1>
+
+            {% if recommendations %}
+            <div class="overflow-x-auto">
+                <table class="table-auto border-collapse border border-gray-300 w-full text-left text-sm">
+                    <thead>
+                        <tr class="bg-blue-500 text-white">
+                            <th class="border border-gray-300 px-4 py-2">Name Restaurants</th>
+                            <th class="border border-gray-300 px-4 py-2">Address</th>
+                            <th class="border border-gray-300 px-4 py-2">Cuisine</th>
+                            <th class="border border-gray-300 px-4 py-2">Distance (km)</th>
+                            <th class="border border-gray-300 px-4 py-2">Average Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for restaurant in recommendations %}
+                        <tr class="bg-white hover:bg-gray-100">
+                            <td class="border border-gray-300 px-4 py-2">{{ restaurant.name }}</td>
+                            <td class="border border-gray-300 px-4 py-2">{{ restaurant.address }}</td>
+                            <td class="border border-gray-300 px-4 py-2">{{ restaurant.Rcuisine }}</td>
+                            <td class="border border-gray-300 px-4 py-2">{{ restaurant.distance | round(2) }}</td>
+                            <td class="border border-gray-300 px-4 py-2">{{ restaurant.avg_rating | round(1) }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-4 text-center">
+                <a href="/" class="text-blue-500 hover:underline">Back to Home</a>
+            </div>
+            {% else %}
+            <p class="mt-8 text-gray-600 text-center">Tidak ada rekomendasi restoran untuk ID yang dimasukkan.</p>
+            <div class="text-center mt-4">
+                <a href="/" class="text-blue-500 hover:underline">Kembali ke Beranda</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+</body>
+</html>
